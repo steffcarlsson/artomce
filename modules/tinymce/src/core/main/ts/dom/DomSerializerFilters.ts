@@ -9,7 +9,6 @@ import { Arr, Optional } from '@ephox/katamari';
 
 import DOMUtils from '../api/dom/DOMUtils';
 import DomParser from '../api/html/DomParser';
-import Entities from '../api/html/Entities';
 import AstNode from '../api/html/Node';
 import * as Zwsp from '../text/Zwsp';
 import { DomSerializerSettings } from './DomSerializerImpl';
@@ -85,17 +84,6 @@ const register = (htmlParser: DomParser, settings: DomSerializerSettings, dom: D
         } else {
           node.remove();
         }
-      }
-    }
-  });
-
-  htmlParser.addNodeFilter('noscript', (nodes) => {
-    let i = nodes.length;
-    while (i--) {
-      const node = nodes[i].firstChild;
-
-      if (node) {
-        node.value = Entities.decode(node.value);
       }
     }
   });
